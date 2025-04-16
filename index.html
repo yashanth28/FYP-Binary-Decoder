@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Decoder Practice Tool</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1> Binary Decoder Practice Tool</h1>
+    <nav>
+      <a href="index.html">Practice</a>
+      <a href="decoder.html">Draw Binary Decoder</a>
+      <a href="theory.html">Theory</a>
+      <a href="quiz.html">Quiz Mode</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="decoder-section">
+      <div class="decoder-diagram">
+        <canvas id="myCanvas" width="650" height="320"></canvas>
+        <p id="canvas-question" class="canvas-question-text"></p>
+      </div>
+    </section>
+
+    <section class="question-box">
+      <h2 id="text-question" class="canvas-question-text"></h2>
+
+      <!-- Toggle Buttons -->
+      <div class="toggle-buttons">
+        <button id="btn-truth-table" onclick="toggleTable('truth-table', 'btn-truth-table')">Show 3-to-8 Decoder Table</button>
+        <button id="btn-lps-table" onclick="toggleTable('lps-table', 'btn-lps-table')">Show Low Power Schottky Table</button>
+      </div>
+
+      <!-- 3-to-8 Decoder Truth Table -->
+      <div class="table-wrapper hidden" id="truth-table">
+        <h2 style="font-size: 28px;">3-to-8 Decoder Truth Table</h2>
+        <table class="truth-table">
+          <thead>
+            <tr>
+              <th colspan="3">Inputs</th>
+              <th colspan="8">Outputs</th>
+            </tr>
+            <tr>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>Y₇</th>
+              <th>Y₆</th>
+              <th>Y₅</th>
+              <th>Y₄</th>
+              <th>Y₃</th>
+              <th>Y₂</th>
+              <th>Y₁</th>
+              <th>Y₀</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+            <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+            <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Low Power Schottky Table -->
+      <div class="table-wrapper hidden" id="lps-table">
+        <h2 style="font-size: 28px;">Low Power Schottky Truth Table</h2>
+        <table class="truth-table">
+          <thead>
+            <tr>
+              <th>C</th>
+              <th>B</th>
+              <th>A</th>
+              <th>Y₇</th>
+              <th>Y₆</th>
+              <th>Y₅</th>
+              <th>Y₄</th>
+              <th>Y₃</th>
+              <th>Y₂</th>
+              <th>Y₁</th>
+              <th>Y₀</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="active">0</td></tr>
+            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td></tr>
+            <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td><td>1</td></tr>
+            <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>1</td><td>0</td><td>1</td><td class="active">0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>1</td><td>1</td><td>1</td><td class="active">0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Options and New Circuit Button -->
+      <div class="options">
+        <button class="option-text" id="option1"></button>
+        <button class="option-text" id="option2"></button>
+        <button class="option-text" id="option3"></button>
+        <button class="option-text" id="option4"></button>
+      </div>
+      <div class="new-circuit-wrapper">
+        <button onclick="generateDecoderQuestion()" class="new-circuit-button"> New Circuit</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/nor.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      generateDecoderQuestion();
+    });
+
+    function toggleTable(tableId, buttonId) {
+      const table = document.getElementById(tableId);
+      const button = document.getElementById(buttonId);
+
+      table.classList.toggle("hidden");
+
+      const labelBase = button.textContent.replace(/^Show |^Hide /, '');
+      button.textContent = table.classList.contains("hidden") 
+        ? `Show ${labelBase}` 
+        : `Hide ${labelBase}`;
+    }
+  </script>
+</body>
+</html>

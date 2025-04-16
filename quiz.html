@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Decoder Quiz</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Binary Decoder Quiz Mode</h1>
+    <nav>
+      <a href="index.html">Practice</a>
+      <a href="decoder.html">Draw Binary Decoder</a>
+      <a href="theory.html">Theory</a>
+      <a href="quiz.html">Quiz Mode</a>
+    </nav>
+  </header>
+
+  <div id="quiz-ui" style="display: none; width: 100%;">
+    <div style="display: flex; justify-content: space-between; width: 100%; padding: 0 2rem;">
+      <div id="timer-bar-wrapper"
+        style="width: 100%; height: 10px; background-color: #333; margin: 0.5rem 2rem 1rem 2rem; border-radius: 5px; overflow: hidden;">
+        <div id="timer-bar" style="height: 100%; width: 100%; background-color: #66f2ff; transition: width 1s linear;">
+        </div>
+      </div>
+      <div id="timer" style="font-size: 1.2rem; font-weight: bold; color: #66f2ff;">Time: 2:00</div>
+    </div>
+    <div id="score-counter" style="font-size: 1.2rem; font-weight: bold; color: #66f2ff;">Score: 0</div>
+  </div>
+
+
+
+
+  <div id="start-screen" style="text-align: center; margin-top: 2rem;">
+    <label for="difficulty" style="color: #66f2ff; font-size: 1.2rem;">Choose difficulty:</label>
+    <select id="difficulty" style="margin-left: 1rem; font-size: 1rem;">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="challenge">Challenge</option>
+    </select>
+    <br><br>
+    <label for="question-count" style="color: #66f2ff; font-size: 1.2rem;">Choose number of questions:</label>
+    <select id="question-count" style="margin-left: 1rem; font-size: 1rem;">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+    <br><br>
+    <button id="start-quiz-btn" style="padding: 0.5rem 1rem; font-size: 1rem;">Start Quiz</button>
+    <br><br>
+    <button id="reset-progress-btn" style="padding: 0.5rem 1rem; font-size: 1rem; margin-top: 1rem;">Reset
+      Progress</button>
+  </div>
+
+  <main style="display: none;">
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+
+    <section id="quiz-box" class="question-box">
+      <p id="question-counter" style="font-weight: bold; color: #66f2ff;">Question 1 of 5</p>
+      <h2 id="text-question">Loading question...</h2>
+
+
+      <div class="options">
+        <button id="option1" class="quiz-option option-text"></button>
+        <button id="option2" class="quiz-option option-text"></button>
+        <button id="option3" class="quiz-option option-text"></button>
+        <button id="option4" class="quiz-option option-text"></button>
+      </div>
+
+      <button id="next-btn" style="display: none;">Next Question</button>
+
+    </section>
+
+    <button id="restart-btn" style="display: none;">Restart Quiz</button>
+    <button id="back-to-start-btn" style="display: none;">Back to Start</button>
+
+  </main>
+
+  <script src="js/nor.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+
+</html>

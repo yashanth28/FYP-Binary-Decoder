@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Decoder Practice Tool</title>
+  <script src="js/nor.js" defer></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1> Binary Decoder Practice Tool</h1>
+    <nav>
+      <a href="index.html">Practice</a>
+      <a href="decoder.html">Draw Binary Decoder</a>
+      <a href="theory.html">Theory</a>
+      <a href="quiz.html">Quiz Mode</a>
+    </nav>
+  </header>
+    <div class="container flex-column">
+        <h1 class="text-center">Draw Decoder from Boolean Expression</h1>
+
+        <div class="draw-container">
+            <input type="text" id="draw-input" placeholder="Enter Boolean expression, e.g. X'Y'Z + XY'Z'" />
+            <button class="btn" onclick="drawDecoderFromInput()">Draw</button>
+        </div>
+
+        <canvas id="myCanvas" width="700" height="470"></canvas>
+    </div>
+</body>
+</html>
+
